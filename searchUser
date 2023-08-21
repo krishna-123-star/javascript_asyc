@@ -1,0 +1,33 @@
+async function fetchUsers() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const users = [
+                { id: 1, name: 'Krishna' },
+                { id: 2, name: 'Prabha' },
+                { id: 3, name: 'Dilna' },
+              
+            ];
+            resolve(users);
+        }, 1000);
+    });
+}
+
+
+async function searchUser() {
+    try {
+        const users = await fetchUsers();
+        const userIdToFind = 2;
+
+        const foundUser = users.find(user => user.id === userIdToFind);
+
+        if (foundUser) {
+            console.log('User found:', foundUser);
+        } else {
+            console.log('User not found.');
+        }
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+    }
+}
+
+searchUser();
